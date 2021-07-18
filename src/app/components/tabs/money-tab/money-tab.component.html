@@ -1,0 +1,17 @@
+<div [formGroup]="form">
+  <div class='fields'>
+    <mat-form-field appearance="standard">
+      <mat-label>Texto</mat-label>
+      <input matInput [(ngModel)]="item.Texto" formControlName="Texto">
+    </mat-form-field>
+
+    <div class='fields-right'>
+      <div class='spans'>
+        <span>Valor: </span><span [ngStyle]="{'color': totalColor()}">{{item.Valor | number:'1.2-2'}}</span>
+      </div>
+      <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="saveClick()">Salvar</button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <app-coin-select *ngFor="let coin of coins" [coinValue]="coin" [Clear]="clear" (Click)='coinClick($event)'></app-coin-select>
+</div>

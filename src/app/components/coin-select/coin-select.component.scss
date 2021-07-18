@@ -1,0 +1,51 @@
+.coin{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.span-principal{
+    width: 50px;
+}
+
+.span-qtdes{
+    font-size: small;
+    margin-top: 4px;
+    width: 55px;
+}
+
+.span-values{
+    font-size: small;
+    margin-top: 4px;
+    width: 90px;
+}
+
+.span-value{
+    width: 20px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+}
+
+.add-button{
+    background-color: rgb(86, 74, 248);
+    color: white;
+    width: 45px !important;
+    min-width: unset!important;
+    display: flex;
+    justify-content: center;
+}
+
+.minus-button{
+    background-color: rgb(248, 74, 74);
+    color: white;
+    width: 45px !important;
+    min-width: unset!important;
+    display: flex;
+    justify-content: center;
+}

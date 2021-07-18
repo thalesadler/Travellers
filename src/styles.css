@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+table {
+    width: 100%;
+    background-color: transparent !important;
+}
+
+tr.mat-row {
+    height: 30px !important;
+}
+
+tr.mat-header-row {
+    height: 35px !important;
+}

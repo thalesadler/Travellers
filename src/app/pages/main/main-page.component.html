@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <span>{{title}}</span>
+  <span class="space"></span>
+  <mat-spinner class='loading' *ngIf="loading" diameter='30'></mat-spinner>
+</mat-toolbar>
+
+<div class="mat-content" (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+  <mat-tab-group mat-align-tabs="start" [(selectedIndex)]="selectedTab">
+    <mat-tab label="Banking">
+      <app-banking-tab (SaveClick)="saveClick($event)"></app-banking-tab>
+    </mat-tab>
+    <mat-tab label="Dinheiro">
+      <app-money-tab (SaveClick)="saveClick($event)"></app-money-tab>
+    </mat-tab>
+    <mat-tab label="Vale">
+      <app-ticket-tab (SaveClick)="saveClick($event)"></app-ticket-tab>
+    </mat-tab>
+    <mat-tab label="Histórico">
+      <app-history-tab (RefreshClick)="refreshClick()" [localPends]="localPends" [pendingsNotProc]="pendingsNotProc" [pendingsProc]="pendingsProc"></app-history-tab>
+    </mat-tab>
+  </mat-tab-group>
+</div>

@@ -1,0 +1,21 @@
+<div [formGroup]="form">
+  <div class='fields'>
+    <mat-form-field class="valor" appearance="standard">
+      <mat-label>Valor</mat-label>
+      <input matInput currencyMask [(ngModel)]="item.Valor" formControlName="Valor">
+    </mat-form-field>
+
+    <mat-form-field appearance="standard" >
+      <mat-label>Texto</mat-label>
+      <input matInput [(ngModel)]="item.Texto" formControlName="Texto">
+    </mat-form-field>
+  </div>
+  <div class='fields'>
+    <mat-radio-group class='radio-group' aria-label="TipoVale" [(ngModel)]="item.TipoVale" formControlName="TipoVale">
+      <mat-radio-button class="radio-button" [value]="tipos[0]">Alimentação</mat-radio-button>
+      <mat-radio-button class="radio-button" [value]="tipos[1]">Refeição</mat-radio-button>
+      <mat-radio-button class="radio-button" [value]="tipos[2]">Transporte</mat-radio-button>
+    </mat-radio-group>
+    <button mat-raised-button class='button' color="primary" [disabled]="form.invalid" (click)="saveClick()">Salvar</button>
+  </div>
+</div>

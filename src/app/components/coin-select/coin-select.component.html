@@ -1,0 +1,17 @@
+<div class='coin'>
+    <span class='span-principal'>{{coinValue | number:'1.2-2'}}</span>
+    <div class='span-qtdes'>
+        <span>Qtde: </span><span class='span-value' [ngStyle]="{'color': totalColor()}">{{qtde}}</span>
+    </div>
+    <div class='span-values'>
+        <span>Valor: </span><span class='span-value' [ngStyle]="{'color': totalColor()}">{{valor | number:'1.2-2'}}</span>
+    </div>
+    <div class='buttons'>
+        <button mat-raised-button class='add-button' (click)='click(1)'>
+            <mat-icon>add</mat-icon>
+        </button>
+        <button mat-raised-button class='minus-button' (click)='click(-1)'>
+            <mat-icon>remove</mat-icon>
+        </button>
+    </div>
+</div>

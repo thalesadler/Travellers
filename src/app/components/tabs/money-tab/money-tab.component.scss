@@ -1,0 +1,20 @@
+.fields{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.fields-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.spans{
+    margin-top: 10px;
+}
+
+button{
+    margin-bottom: 10px;
+}
