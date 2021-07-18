@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, ViewChild } from '@a
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MovementTypeEnum } from 'src/app/enums/movement-type.enum';
 import { Pending } from 'src/app/models/pending';
 
 @Component({
@@ -52,4 +53,22 @@ export class PendingGridComponent implements OnChanges {
     doubleClick(row) {
         this.DoubleClick.emit(row);
     }
+
+    Color(value) {
+        if (value > 0) {
+            return 'green';
+        } else {
+            return 'black';
+        }
+    }
+
+    totalColor(row) {
+        let value = 0;
+        if (row.Tipo == MovementTypeEnum.Pay) {
+            value = row.Valor * -1
+        } else {
+            value = row.Valor;
+        }
+        return this.Color(value);
+    } 
 }
