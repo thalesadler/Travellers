@@ -128,6 +128,8 @@ export class PendingService {
             headers: header
         };
 
+        pending.Texto = pending.Texto.trim();
+
         return this.http.post(StringsConstants.API_URL + 'pendente', pending, options).pipe(map(
             res => {
                 return new Pending((res as any).Dados)
@@ -151,6 +153,8 @@ export class PendingService {
             method: 'PUT',
             headers: header
         };
+
+        pending.Texto = pending.Texto.trim();
 
         return this.http.put(StringsConstants.API_URL + 'pendente', pending, options).pipe(map(
             res => {
