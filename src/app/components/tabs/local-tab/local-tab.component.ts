@@ -2,25 +2,29 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Pending } from 'src/app/models/pending';
 
 @Component({
-    selector: 'app-history-tab',
-    templateUrl: './history-tab.component.html',
-    styleUrls: ['./history-tab.component.scss']
+    selector: 'app-local-tab',
+    templateUrl: './local-tab.component.html',
+    styleUrls: ['./local-tab.component.scss']
 })
-export class HistoryTabComponent {
+export class LocalTabComponent {
 
     @Input()
-    pendingsNotProc: Pending[] = [];
-
-    @Input()
-    pendingsProc: Pending[] = [];
+    localPends: Pending[] = [];
 
     @Output()
     RefreshClick = new EventEmitter<Pending>();
+
+    @Output()
+    ProcessClick = new EventEmitter<Pending>();
 
     constructor() {     
     }   
 
     refreshClick(){
         this.RefreshClick.emit();
+    }
+
+    processClick(){
+        this.ProcessClick.emit();
     }
 }

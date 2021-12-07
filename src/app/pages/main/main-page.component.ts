@@ -19,13 +19,12 @@ export class MainPageComponent {
     localPends: Pending[] = [];
     pendingsNotProc: Pending[] = [];
     pendingsProc: Pending[] = [];
-    withInternet = true;
 
     constructor(public service: PendingService,
         public loginService: LoginService,
         private snackBarService: SnackBarService,) {
         this.loginService.login('thalesadler', 'tyutyu123').subscribe(res => {
-            this.trySaveLocalStorage();
+            this.getLocalStorage();
             this.refreshPendings();
         });
     }
@@ -37,13 +36,10 @@ export class MainPageComponent {
     afterSave(res, pending) {
         this.loading = false;
         if (typeof res === "string") {
-            if (res == "sem internet") {
-                this.addLocalStorage(pending);
-            } else {
-                this.openSnackBar(res);
-            }
+            this.openSnackBar(res);
             return false;
         } else {
+            localStorage.removeItem("TH-".concat(pending.Id.toString()));
             return true;
         }
     }
@@ -51,6 +47,7 @@ export class MainPageComponent {
     saveClick(pending) {
         this.loading = true;
         pending.Id = this.getRandomInt(1, 999999);
+        this.addLocalStorage(pending);
         this.service.postPending(pending).subscribe(res => {
             this.afterSave(res, pending)
         });
@@ -63,12 +60,19 @@ export class MainPageComponent {
     }
 
     addLocalStorage(pending) {
-        localStorage.setItem('TH-'.concat(pending.Texto), JSON.stringify(pending));
+        localStorage.setItem('TH-'.concat(pending.Id.toString()), JSON.stringify(pending));
     }
 
-    refreshClick() {
+    refreshLocalClick() {
         this.getLocalStorage();
+    }
+
+    refreshHistoryClick() {
         this.refreshPendings();
+    }
+
+    processLocalClick(){
+        this.trySaveLocalStorage();
     }
 
     afterLoad(res) {
@@ -103,15 +107,12 @@ export class MainPageComponent {
 
     trySaveLocalStorage() {
         this.getLocalStorage();
-        this.withInternet = true;
         this.localPends.map(pend => {
-            if (this.withInternet) {
                 this.service.postPending(pend).subscribe(res => {
                     if (this.afterSavePend(res)) {
-                        localStorage.removeItem("TH-".concat(pend.Texto));
+                        localStorage.removeItem("TH-".concat(pend.Id.toString()));
                     }
                 });
-            }
         });
     }
 
@@ -130,11 +131,7 @@ export class MainPageComponent {
 
     afterSavePend(res) {
         if (typeof res === "string") {
-            if (res == "sem internet") {
-                this.withInternet = false;
-            } else {
-                this.openSnackBar(res);
-            }
+            this.openSnackBar(res);
             return false;
         } else {
             return true;
@@ -161,11 +158,11 @@ export class MainPageComponent {
                 const swipe = direction[0] < 0 ? 'next' : 'previous';
                 if (swipe === 'next') {
                     const isFirst = this.selectedTab === 0;
-                    if (this.selectedTab <= 3) {
+                    if (this.selectedTab <= 4) {
                         this.selectedTab = isFirst ? 1 : this.selectedTab + 1;
                     }
                 } else if (swipe === 'previous') {
-                    const isLast = this.selectedTab === 4;
+                    const isLast = this.selectedTab === 5;
                     if (this.selectedTab >= 1) {
                         this.selectedTab = this.selectedTab - 1;
                     }

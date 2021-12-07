@@ -1,0 +1,10 @@
+<div class='div-button'>
+  <button mat-raised-button color="primary" (click)="refreshClick()">Atualizar</button>
+</div>
+<div class='div-button'>
+  <button mat-raised-button color="primary" (click)="processClick()">Processar</button>
+</div>
+<div class='local-grid' *ngIf="localPends.length > 0">
+  <span>Locais</span>
+  <app-pending-grid [itens]="localPends"></app-pending-grid>
+</div>

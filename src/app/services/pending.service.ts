@@ -135,11 +135,7 @@ export class PendingService {
                 return new Pending((res as any).Dados)
             }),
             catchError(err => {
-                if (err.status == 0){
-                    return of ("sem internet");
-                } else {
-                    return of(err.status + ' (' + err.statusText + ') : ' + err.error.Error);
-                }
+                return of(err.status + ' (' + err.statusText + ') : ' + err.error.Error);
             })
         );
     }

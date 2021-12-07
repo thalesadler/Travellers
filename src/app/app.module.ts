@@ -36,6 +36,7 @@ import { CoinSelectComponent } from './components/coin-select/coin-select.compon
 import { TicketTabComponent } from './components/tabs/ticket-tab/ticket-tab.component';
 import { PendingGridComponent } from './components/grids/pending-grid/pending-grid.component';
 import { HistoryTabComponent } from './components/tabs/history-tab/history-tab.component';
+import { LocalTabComponent } from './components/tabs/local-tab/local-tab.component';
 
 registerLocaleData(localePt, 'pt');
 
@@ -59,6 +60,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     TicketTabComponent,
     PendingGridComponent,
     HistoryTabComponent,
+    LocalTabComponent,
   ],
   imports: [
     BrowserModule,
