@@ -16,6 +16,7 @@ export class MainPageComponent {
     loading = false;
     loading1 = false;
     loading2 = false;
+    loading3 = false;
     localPends: Pending[] = [];
     pendingsNotProc: Pending[] = [];
     pendingsProc: Pending[] = [];
@@ -75,10 +76,15 @@ export class MainPageComponent {
         this.trySaveLocalStorage();
     }
 
-    afterLoad(res) {
-        if (!this.loading1 && !this.loading2) {
+    disableLoading()
+    {
+        if (!this.loading1 && !this.loading2 && !this.loading3) {
             this.loading = false;
         }
+    }
+
+    afterLoad(res) {
+        this.disableLoading();
         if (typeof res === "string") {
             this.openSnackBar(res);
             return false;
@@ -106,7 +112,13 @@ export class MainPageComponent {
     }
 
     trySaveLocalStorage() {
+        this.loading = true;
+        this.loading3 = true;
         this.getLocalStorage();
+        if (this.localPends.length === 0){
+            this.loading3 = false;
+            this.disableLoading();
+        }
         this.localPends.map(pend => {
                 this.service.postPending(pend).subscribe(res => {
                     if (this.afterSavePend(res)) {
@@ -130,6 +142,8 @@ export class MainPageComponent {
     }
 
     afterSavePend(res) {
+        this.loading3 = false;
+        this.disableLoading();
         if (typeof res === "string") {
             this.openSnackBar(res);
             return false;
@@ -154,7 +168,7 @@ export class MainPageComponent {
             const duration = time - this.swipeTime;
             if (duration < 1000 //
                 && Math.abs(direction[0]) > 30 // Long enough
-                && Math.abs(direction[0]) > Math.abs(direction[1] * 3)) { // Horizontal enough
+                && Math.abs(direction[0]) > Math.abs(direction[1] * 4)) { // Horizontal enough
                 const swipe = direction[0] < 0 ? 'next' : 'previous';
                 if (swipe === 'next') {
                     const isFirst = this.selectedTab === 0;

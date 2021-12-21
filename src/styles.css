@@ -27,3 +27,19 @@ tr.mat-header-row {
   mat-cell.mat-cell, mat-header-cell.mat-header-cell {
     overflow: visible; 
   }
+
+  .mat-tab-label{
+    background-color: rgb(124, 145, 212) !important;
+    display: flex;
+    color: white;
+}
+
+::ng-deep.mat-tab-label{
+    font-size: smaller !important;
+    min-width: 0px !important;
+    width: 2px !important;
+}
+
+.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination{
+  display: none !important;
+}
