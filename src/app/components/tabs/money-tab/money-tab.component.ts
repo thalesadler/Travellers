@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { FormPaymentEnum } from 'src/app/enums/form-payment.enum';
 import { MovementTypeEnum } from 'src/app/enums/movement-type.enum';
 import { Coin } from 'src/app/models/coin';
@@ -16,13 +16,13 @@ export class MoneyTabComponent {
     @Output()
     SaveClick = new EventEmitter<Pending>();
 
-    form: FormGroup;
+    form: UntypedFormGroup;
     tipos: MovementTypeEnum[] = [MovementTypeEnum.Pay, MovementTypeEnum.Receive];
     coins = [100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.10, 0.05]; 
     lancMoeda: Coin;
     clear = true;
 
-    constructor(private formBuilder: FormBuilder,) {
+    constructor(private formBuilder: UntypedFormBuilder,) {
         this.reload();      
 
         this.form = this.formBuilder.group({

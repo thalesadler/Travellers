@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { FormPaymentEnum } from 'src/app/enums/form-payment.enum';
 import { MovementTypeEnum } from 'src/app/enums/movement-type.enum';
 import { TicketTypeEnum } from 'src/app/enums/ticket-type.enum';
@@ -16,10 +16,10 @@ export class TicketTabComponent {
     @Output()
     SaveClick = new EventEmitter<Pending>();
 
-    form: FormGroup;
+    form: UntypedFormGroup;
     tipos: TicketTypeEnum[] = [TicketTypeEnum.Food, TicketTypeEnum.Meal, TicketTypeEnum.Transport];
 
-    constructor(private formBuilder: FormBuilder,) {
+    constructor(private formBuilder: UntypedFormBuilder,) {
         this.reload();
 
         this.form = this.formBuilder.group({

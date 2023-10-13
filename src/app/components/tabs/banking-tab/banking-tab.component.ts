@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { FormPaymentEnum } from 'src/app/enums/form-payment.enum';
 import { MovementTypeEnum } from 'src/app/enums/movement-type.enum';
 import { Pending } from 'src/app/models/pending';
@@ -15,10 +15,10 @@ export class BankingTabComponent {
     @Output()
     SaveClick = new EventEmitter<Pending>();
 
-    form: FormGroup;
+    form: UntypedFormGroup;
     tipos: MovementTypeEnum[] = [MovementTypeEnum.Pay, MovementTypeEnum.Receive];
 
-    constructor(private formBuilder: FormBuilder,) {
+    constructor(private formBuilder: UntypedFormBuilder,) {
         this.reload();      
 
         this.form = this.formBuilder.group({
